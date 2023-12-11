@@ -28,6 +28,24 @@ public class TestEx5 {
 		else {
 			System.out.println("잘못된 입력입니다.");
 		}
+		
+		
+		
+		if(month<1||month>12) {
+			System.out.println("잘못된 입력입니다.");
+		}
+		else if(month<=2||month>=12) {
+			System.out.println("겨울입니다.");
+		}
+		else if(month<=5) {
+			System.out.println("봄입니다.");
+		}
+		else if(month<=8) {
+			System.out.println("여름입니다.");
+		}
+		else {
+			System.out.println("가을입니다.");
+		}
 
 	}
 
