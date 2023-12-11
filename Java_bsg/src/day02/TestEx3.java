@@ -18,8 +18,8 @@ public class TestEx3 {
 		}
 		else {
 			System.out.println(num+"은 음수입니다.");
-			scan.close();
 		}
+		scan.close();
 	}
 
 }
