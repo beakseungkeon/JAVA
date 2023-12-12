@@ -38,6 +38,10 @@ public class HomeworkEx1 {
 			System.out.println("A");
 		}
 		
+		scan.close();
+		
+		
+		
 	}
 
 }
