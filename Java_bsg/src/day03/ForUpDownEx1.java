@@ -11,8 +11,8 @@ public class ForUpDownEx1 {
 		Scanner scan = new Scanner(System.in);
 		
 		
-		int num=0;
-		for( ; num!=r; ) {
+		
+		for(int num=0 ; num!=r; ) {
 			
 			num=scan.nextInt();
 			System.out.println("정수:"+num);
