@@ -50,7 +50,7 @@ public class UpdowngameEx1 {
 			
 				
 			}
-			if(record>=highscore) {
+			if(record<=highscore) {
 				highscore=record;
 				
 			}
