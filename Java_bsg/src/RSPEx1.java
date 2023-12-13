@@ -14,8 +14,7 @@ public class RSPEx1 {
 		 * 기록
 		 * -승 무 패를 순서대로 출력*/
 		Scanner scan = new Scanner(System.in);
-		int record=0;
-		int highscore=0;
+		
 		int num;
 		int draw=0;
 		int win=0;
@@ -24,7 +23,7 @@ public class RSPEx1 {
 			System.out.println();
 		System.out.println("메뉴");
 		System.out.println("1.새 게임");
-		System.out.println("2.최고기록 확인");
+		System.out.println("2.기록 확인");
 		System.out.println("3.프로그램 종료");
 		System.out.print("메뉴선택:");
 		
