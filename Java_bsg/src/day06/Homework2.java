@@ -43,125 +43,165 @@ public class Homework2 {
 		 * 메뉴 선택 : 2
 		 * --기록--
 		 * 1. JIK : 5회
-		 */
-		int re=0;
-		char name[]=new char[3];
+		 * */
+		//반복문: 프로그램 종료를 선택하기 전까지 반복
+		int menu;
 		Scanner scan = new Scanner(System.in);
-		int scount=0;
-		int bcount=0;
-		int record=0;
-		//1에서 9사이 3개 랜덤 생성 (배열 사용)
-		int score=0;
-		int input[]=new int[3];
-		int min=1,max=9;
-		int arr[]=new int[3];
-		int count=0;
-		int num=0;
-		int toprecord[]=new int[1];
-		String toprecord2[]=new String[1];
+		int records[]=new int[5];
+		int rankCount=0;
+		
+		for(int i=0;i<records.length;i++) {
+			records[i]=Integer.MAX_VALUE;
+		}
 		
 		do {
-			System.out.println();
-		System.out.println("메뉴");
-		System.out.println("1.새 게임");
-		System.out.println("2.기록확인");
-		System.out.println("3.프로그램 종료");
-		System.out.print("메뉴선택:");
-		num=scan.nextInt();
-		if(num==1) {
-			while(count<3){
-				//랜덤수 생성
-				int r=(int)(Math.random()*(max-min+1)+1);
-				//중복 확인
-				boolean duplicated=false;//중복 여부를 알려주는 변수
-				for(int i=0;i<count;i++) {
-					if(arr[i]==r) {
-						duplicated=true;
-						break;
-					}
-				}
-				//중복되지 않으면 저장 후 count 증가
-				if(!duplicated) {
-					arr[count]=r;
-					count++;
-				}
-			}
-			
-			//입력: 3개
-			while(true) {
-			for(int i=0;i<input.length;i++) { 
-				System.out.println("입력:");
-				input[i]=scan.nextInt();
-			}
-			for(int i=0;i<input.length;i++) {
-				for(int j=0;j<arr.length;j++) {
-					if(arr[j]==input[i]) {
-						bcount++;
-						System.out.println("처음 볼"+bcount);
-						if(arr[j]==input[j]) {
-							
-							bcount--;
-							scount++;
-							System.out.println("나중 볼"+bcount);
+			//메뉴 출력
+			System.out.println("메뉴");
+			System.out.println("1.새게임");
+			System.out.println("2.기록 확인");
+			System.out.println("3.프로그램 종료");
+			System.out.print("메뉴 선택:");
+			//메뉴를 선택
+			menu=scan.nextInt();
+			//메뉴 선택에 다른 기능 실행
+			switch(menu) {
+			//1번 새게임
+			case 1:
+				int min = 1, max = 9;
+				int com[] = new int[3];
+				int count = 0;
+
+				//랜덤으로 중복되지 않은 3개의 수를 생성
+				while(count < com.length) {
+					//랜덤한 수 생성
+					int r = (int)(Math.random() * (max - min + 1) + min);
+
+					//중복 확인
+					int i;
+					for(i = 0; i<count; i++) {
+						if(com[i] == r) {
+							break;
 						}
 					}
-				}
-			}
-			if(bcount==0&&scount==0) {
-				System.out.println("O");
-				record++;
-			}else {
-				System.out.println(scount+"S"+bcount+"b");
-				record++;
-			}
-		
-			//결과: 2B
-			if(scount==3) {
-				
-				System.out.println("정답입니다.");
-				record++;
-				System.out.println("현재 기록:"+record);
-				
-					
-				System.out.println("이름을 입력하세요:");
-				toprecord2[re]=scan.next();
-				if(score+1>toprecord2.length) {
-					int tmp2[]=new int[toprecord2.length+1];
-					System.arraycopy(toprecord2, 0, tmp2, 0, toprecord2.length);
-					toprecord=tmp2;
-					
+					//중복되지 않으면 저장 후 count증가
+					if(i == count) {
+						com[count++] = r;
 					}
-				if(score+1>toprecord.length) {
-					int tmp[]=new int[toprecord2.length+1];
-					System.arraycopy(toprecord, 0, tmp, 0, toprecord.length);
-					toprecord=tmp;
-					score++;
-					}
-					
-				re++;
-				
-				break;
 				}
-			scount=0;
-			bcount=0;
-			}
-			
-			//3s 게임 종료
-			}
-		
-		else if(num==2) {
-			Arrays.sort(toprecord);
-			
-			for(int i=0;i<toprecord.length;i++) {
-				System.out.println(toprecord[i]+":"+toprecord[i]);
-			}
-				}
-		
-		}while(num!=3);
-		// --------------------------------------------------------------------------------------------
-		
-		
 
+				//출력
+				for(int i = 0; i<com.length; i++) {
+					System.out.print(com[i] + " ");
+				}
+				System.out.println();
+				//반복문 : 맞출때까지 => 스트라이크의 개수가 3개 미만인 경우 반복
+				int strike, ball;
+				int user [] = new int[com.length];
+				int recordCount=0;
+				do {
+					//중복되지 않은 숫자 3개를 입력
+					count = 0;
+					System.out.print("입력 : ");
+					while(count < user.length) {
+						int input = scan.nextInt();
+						int i;
+						for(i = 0; i<count; i++) {
+							if(user[i] == input) {
+								break;
+							}
+						}
+						//중복되지 않으면 저장 후 count증가
+						if(i == count) {
+							user[count++] = input;
+						}
+					}
+					//스트라이크와 볼의 개수를 계산
+					strike = 0;
+					ball = 0;
+					for(int i = 0; i<com.length; i++) {
+						for(int j = 0; j<user.length; j++) {
+							//두 수가 같으면
+							if(com[i] == user[j]) {
+								//위치가 같으면 스트라이트
+								if(i == j) {
+									strike++;
+								}else { //다르면 볼
+									ball++;
+								}
+							}
+						}
+					}
+
+					//스트라이크와 볼의 개수에 따른 결과를 출력
+					if(strike != 0) {
+						System.out.print(strike + "S");
+					}
+					if(ball != 0) {
+						System.out.print(ball + "B");
+					}
+					if(strike == 0 && ball == 0) {
+						System.out.print("O");
+					}
+					System.out.println();
+					recordCount++;
+
+				}while(strike < 3);
+				//정답입니다.를 출력
+				System.out.println("정답입니다.!");
+				//기록을 비교하여 등수에 들면 추가
+				//기록이 5개 등록이 안 된 경우나 마지막 기록이 내 기록보다 큰 경우
+				if(rankCount!=5||records[rankCount-1]>recordCount) {
+					records[4]=recordCount;
+					System.out.println("이름:");
+					String name=scan.next();
+					int index=0;
+					//현재 기록이 들어갈 위치 찾기
+					for(int i=0;i<rankCount;i++) {
+						if(recordCount<records[i]) {
+							index=i;
+							break;
+						}
+					}
+					//이전 기록들을 뒤로 한칸 씩 밈
+					for(int i=rankCount-2;i>=index;i++) {
+						records[i]=records[i+1];3
+					}
+					rankCount=rankCount<5?rankCount+1:rankCount;
+					
+					
+				}
+				break;
+			//2번 기록확인
+			case 2:
+				if(rankCount==0) {
+					System.out.println("기록이 없습니다.");
+					
+				}else {
+					for(int i=0;i<rankCount;i++) {
+						System.out.println(i+1+"등:"+records[i]);
+					}
+				}
+				break;
+			//3번 프로그램 종료
+			case 3:
+				System.out.println("프로그램을 종료합니다");
+				break;
+			//잘못된 입력
+			default:
+				System.out.println("잘못된 메뉴입니다.");
+			}
+			
+			
+		}while(menu!=3);
+		scan.close();
+			
+			
+			
+			
+			
+			
+			
+			
 	}
 
 }
