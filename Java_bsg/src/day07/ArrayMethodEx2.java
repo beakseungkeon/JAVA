@@ -53,4 +53,11 @@ public static void initArray2(int arr[]) {
  * 메서드명:initArray3
  * 
  * */
+public static int[] initArray3(int length) {
+	int arr[]= new int[length];
+	for(int i=0;i<length;i++) {
+		arr[i]=i+1;
+	}
+	return arr;
+}
 }
