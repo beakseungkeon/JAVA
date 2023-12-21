@@ -14,6 +14,18 @@ public class SwitchEx1 {
 		for(int i=0;i<5;i++) {
 			System.out.println(i+"");
 		}
+		//
+		int menu=1;
+		switch(menu) {
+		case 1:
+			int num=10;
+			System.out.println(num);
+			break;
+		case 2:int num=10;
+		System.out.println(num);
+			break;
+		
+		}
 
 	}
 
