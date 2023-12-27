@@ -25,6 +25,8 @@ public class DateEx1 {
 		
 		Board board=new Board("제목","내용",new Date());
 		System.out.println(board.getRegDate());
+		Board board2=new Board("제목2","내용",null);
+		board.setRegDate="2023-12-27 18:00:00";
 	}
 
 }
@@ -32,5 +34,16 @@ public class DateEx1 {
 @Data
 class Board{
 	String title,contents;
-	Date regDate;
+	
+	
+	Date setregDate;
+	public void setRegDate(String str) {
+		SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			regDate=format.parse(str);
+		} catch (ParseException e) {
+			
+			e.printStackTrace();
+		}
+	}
 }
