@@ -56,7 +56,7 @@ public class StudentProgram implements program {
 					}
 	}
 	private void load(String fileName) {
-		// TODO Auto-generated method stub
+		// 서버에서 학생 정보를 불러옴
 		try(FileInputStream fis =new FileInputStream(fileName);
 				ObjectInputStream ois=new ObjectInputStream(fis)){
 				try {
@@ -121,7 +121,7 @@ public class StudentProgram implements program {
 		//추가를 해서 성공하면 성공 알림,실패하면 실패 알림
 			if(sm.insertStudent(std)) {
 				System.out.println("학생을 추가했습니다.");
-				return;
+				return ;
 			}
 			System.out.println("이미 등록된 학생입니다.");
 	}

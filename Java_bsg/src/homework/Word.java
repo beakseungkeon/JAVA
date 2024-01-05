@@ -14,7 +14,7 @@ public class Word implements Serializable {
 	 */
 	private static final long serialVersionUID = 7707832945681754218L;
 	private String Word,WordClass;
-	private String mean;
+	private ArrayList<String>mean;
 	@Override
 	public int hashCode() {
 		return Objects.hash(Word, WordClass);
