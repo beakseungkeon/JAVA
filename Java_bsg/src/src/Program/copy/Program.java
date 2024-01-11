@@ -1,7 +1,9 @@
-package program.copy;
+package src.Program.copy;
 
-public interface program {
+public interface Program {
+	
 	void run();
 	void printMenu();
 	void runMenu(int menu);
+	
 }
