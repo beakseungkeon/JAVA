@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position  예제</title>
+    <style>
+        /* bodt 태그의 높이를 1500px로 지정한 후
+        브라우저 우측 하단에 위로가기 버튼을
+        추가하고,버튼을 클릭하면 위로 가도록
+        작성 */
+        body{
+            height: 1500px;
+        }
+        .fixed{position: fixed; bottom: 50px; right: 50px;
+        border-radius: 50%;
+        border: 2px solid black;
+        
+        text-align: center;
+        line-height: 50px;
+        text-decoration: none;
+        color: black;
+        background-color: gray;
+    }
+        .top{
+            position: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="top"></div>
+    <div class="dum">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem incidunt enim pariatur! Quam, quae dicta. Excepturi id, amet doloribus odio blanditiis, vel corporis dolor rem optio corrupti animi sapiente iusto!</div>
+    <a href="#top" class="fixed">위로가기</a>
+</body>
+</html>
