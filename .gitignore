@@ -25,3 +25,4 @@ replay_pid*
 .classpath
 .project
 Java_bsg/.gitignore
+/bin/
