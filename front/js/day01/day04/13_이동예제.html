@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            border: 3px solid black;
+            height: 50px;
+            width: 150px;
+            overflow: hidden;
+        }
+        .box{border: 3px solid red;
+            background-color: red;
+            height: 50px;
+            width: 50%;
+            float: left;
+        }
+        #con1 .box{
+			transition: margin-left 1s, transform 1s;
+		}
+		.move{
+			/* 애니메이션 이용 */
+			animation-name: moveRight;
+			animation-duration: 1s;
+			/* 애니메이션 재생 전과 후에 어떻게 지정할지를 결정*/
+			animation-fill-mode: forwards;
+		}
+		@keyframes moveLeft {
+			from {
+				margin: 0;
+			}
+			to{
+				margin-left: -150px;
+			}
+		}
+        @keyframes moveRight {
+			from {
+				margin-left: -150px ;
+			}
+			to{
+				margin-left: 0px;
+			}
+		}
+        .box2{
+            background-color: yellow;
+            height: 50px;
+            width: 50%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="con1">
+		<div class="box">1</div>
+		<div class="box2">2</div>
+	</div>
+    <button id="btn">왼쪽</button>
+    <button id="btn2">오른쪽</button>
+    <script>
+        let btn = document.getElementById("btn");
+        let btn2 = document.getElementById("btn2");
+        
+		let box1 = document.querySelector("#con1 .box");
+        btn.onclick = function(){
+			//box1은 style을 이용하여 자연스럽게 이동
+			//box1.style.marginLeft = "100px";
+			box1.style.transform = "translateX(-150px)";
+			box2.style.transform = "translateX(0)";
+			
+			
+		}
+        btn2.onclick = function(){
+			//box1은 style을 이용하여 자연스럽게 이동
+			//box1.style.marginLeft = "100px";
+			box1.style.transform = "translateX(0)";
+			box2.style.transform = "translateX(150)";
+			
+		}
+    </script>
+</body>
+</html>

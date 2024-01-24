@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            background-color: black;position: fixed;top: 0;bottom: 0;
+            left: 0;right: 0;
+            /* opacity는 자식 요소도 같이 투명하게 하기 때문에 조심해서 사용 */
+            background-color: rgba(0,0,0,0.3)
+        }
+        .inner-box{box-sizing: border-box;
+        background-color: white;
+        width: 50%;height: 50%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="inner-box">컨텐츠</div>
+</div>
+</body>
+</html>

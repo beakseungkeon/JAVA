@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        header{background-color: gray;
+        height: 50px;}
+        aside{background-color: yellow;
+        height: 500px;float: left;
+        width: 40%;}
+        section{background-color: red;
+        height: 500px;float: right;
+        width: 60%;}
+        footer{background-color: whitesmoke;
+        height: 200px;}
+        main::after{clear: both; content: '';display: block;}
+    </style>
+</head>
+<body>
+    <header>헤더</header>
+    <main>
+    <aside>어사이드</aside>
+    <section>섹션</section>
+    </main>
+    <footer>푸터</footer>
+
+</body>
+</html>

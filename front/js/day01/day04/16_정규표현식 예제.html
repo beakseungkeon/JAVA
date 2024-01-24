@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" type="text" >
+    <div id="error"></div>
+    <script>
+    input.onchange=function(){
+        let text=this.value;
+        let regex=/^\d+$/;
+        let error;
+
+        if(regex.thet(text)){
+            error="숫자로만 되어 있습니다."
+        }else{
+            error="숫자가 아닌 문자가 있습니다."
+        }
+        let errorBox=document.getElementById("error");
+        errorBox.innerText=error;
+    }
+</script>
+</body>
+</html>
