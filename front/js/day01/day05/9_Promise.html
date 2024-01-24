@@ -8,7 +8,7 @@
 <body>
     <script>
         //매개변수로 콜백 함수가 필요
-        let count=0;
+        let count=3;
         let promise=new Promise(function(resolve,reject){
             
             if(count<3){
@@ -19,8 +19,12 @@
         });
         promise.then(function(){
             console.log("작업완료");
+        }).catch(function(){
+            console.log("에러발생")
+        }).finally(function(){
+            console.log("작업중입니다.")
+
         })
-        console.log("작업중입니다.")
-    </script>
+        </script>
 </body>
 </html>
