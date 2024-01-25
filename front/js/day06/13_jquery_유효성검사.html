@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../static/jquery.js"></script>
+</head>
+<body>
+    <input type="text" class="integer">
+
+    <script>
+        let regex=/^\d+$/;
+        /*
+        input태그에 값을 입력해서 숫자가 아니면 input태그 아래에 입력한 값은
+        숫자가 아닙니다라고 출력하는 코드 작성
+        */
+        $(".integer").change(function(){
+            let int=$(".integer").val()
+            if(regex.test(int)){
+            alert("숫자로만 되어 있습니다.")
+        }else{
+            alert("숫자가 아닌 문자가 있습니다.")
+        }
+        })
+       
+    </script>
+</body>
+</html>

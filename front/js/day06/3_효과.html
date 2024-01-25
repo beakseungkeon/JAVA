@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button class="btn-show">show</button>
+    <button class="btn-hide">hide</button>
+    <button class="btn-toggle">toggle</button>
+    <div class="box" id="show" style="background-color: yellow;height: 400px;"></div>
+    <script>
+    $(document).on("click",".box",function(){
+        alert("안녕하세요")
+       });
+       $(".btn-show").click(function(){
+        $("#show").fadeIn(1000);
+       });
+       $(".btn-hide").click(function(){
+        $("#show").fadeOut(1000);
+       });
+       $(".btn-toggle").click(function(){
+        $("#show").fadeToggle();
+       });
+    </script>
+    
+</body>
+</html>

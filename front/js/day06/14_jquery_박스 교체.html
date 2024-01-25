@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../static/jquery.js"></script>
+    <style>
+        .container{
+			max-width: 500px; margin: 0 auto;
+		}
+		.box-group{
+			border: 3px solid black; margin-bottom: 20px;
+		}
+		.box{
+			height: 400px; display: none;
+		}
+		.box.select{
+			display: block;
+		}
+		.box.box1 { background-color: yellow;}
+		.box.box2 { background-color: red;}
+		.box.box3 { background-color: green;}
+		.nav-group{
+			display: flex; align-items: center;
+			justify-content: center;
+		}
+		.page-group{
+			margin: 0 10px;
+		}
+		.max-page{ font-weight: bold;}
+		.btn-prev,.btn-next{
+			width: 30px; height: 30px; border-radius: 50%;
+			border-width: 1px; background-color: #fff;
+			cursor: pointer;
+		}
+		.btn-prev:hover, .btn-next:hover{
+			font-weight: bold; background-color: aliceblue;
+		}
+    </style>
+</head>
+<body>
+    <div class="container">
+		<div class="box-group">
+            <div class="box box1" data-page="1"></div>
+			<div class="box box2 select" data-page="2"></div>
+			<div class="box box3" data-page="3"></div>
+		</div>
+		<div class="nav-group">
+			<button class="btn-prev">&lt;</button>
+			<span class="page-group">
+				<span class="cur-page">1</span> / <span class="max-page">3</span>
+			</span>
+			<button class="btn-next">></button>
+		</div>
+	</div>
+    <script>
+        $(".btn-prev").click(function(){
+            let select=$(".select")
+            let prev=$(".select").prev();
+            
+            if(!prev.length){
+                $(".box3").addClass("select");
+                select.removeClass("select");
+
+            }
+            else{
+
+                
+                prev.addClass("select");
+                select.removeClass("select");
+            }
+        
+            drawPage();
+        })
+
+        $(".btn-next").click(function(){
+            let select=$(".select");
+            let next=$(".select").next();
+            
+            if(next.length){
+                next.addClass("select");
+                
+                
+            }
+            else{
+                
+                
+                $(".box1").addClass("select");
+                
+            }
+            select.removeClass("select");
+            drawPage();
+        })
+        function drawPage(){
+            //index는 부모 요소를 기준으로 선택 요소가 몇번지인지 출력
+            let index=$(".select").index();
+            $(".cur-page").text(index+1);
+        }
+        
+    </script>
+</body>
+</html>
