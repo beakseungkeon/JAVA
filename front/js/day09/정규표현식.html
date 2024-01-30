@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>회원가입</title>
+	<style>
+		.container{
+			max-width: 500px; margin: 0 auto;
+		}
+		.input-group{
+			margin-bottom: 20px;
+		}
+		
+        .first{
+            display: inline-block;
+            width: 120px;
+            
+        }
+		.input-group .input{
+			border: none;
+            border-bottom: 3px dashed black;
+            
+			
+		}
+		
+		.btn-submit{
+			width: 100%; box-sizing: border-box; 
+			height: 30px;  
+			background-color: #fff; cursor: pointer; background-color: greenyellow;
+		}
+		[class^=error]{
+			color: red;
+		}
+        
+        
+	</style>
+</head>
+<body>
+	<form action="" class="container">
+		
+		<div class="input-group">
+			<label for="" class="first">아이디</label>
+			<input type="text" name="title" id="title" class="input" > <br>
+			<label class="error-title"></label>
+		</div>
+		<div class="input-group">
+			<label for="" class="first">패스워드</label>
+			<input type="text" name="writer" id="writer" class="input" ><br>
+			<label class="error-writer"></label>
+		</div>
+		<div class="input-group">
+			<label for="" class="first">패스워드 확인</label>
+			<input type="text" name="pw" id="pw" class="input"> <br>
+			<label class="error-pw"></label> 
+		</div>
+		<div class="input-group">
+			<label for="" class="first">이메일</label>
+			<input type="text" name="email" id="email" class="input" >@
+			<input type="text" name="email2" id="email2" class="input" > <br>
+			<label class="error-email"></label>
+		</div>
+		<div class="input-group">
+			<label for="" class="first">주소</label>
+			<input type="text" name="addr" id="addr" class="input" > <br>
+            <label for="" class="first"></label>
+			<input type="text" name="addr" id="addr" class="input" > <br>
+
+			<label class="error-addr"></label>
+		</div>
+		
+		<button class="btn-submit">전송</button>
+	</form>
+	<script>
+		let title = document.querySelector("[name=title]");
+		let writer = document.querySelector("[name=writer]");
+		let pw = document.querySelector("[name=pw]");
+		let email = document.querySelector("[name=email]");
+		let email2 = document.querySelector("[name=email2]");
+		let addr = document.querySelector("[name=addr]");
+	
+		let titleError = document.querySelector(".error-title");
+		let writerError = document.querySelector(".error-writer");
+		let pwError = document.querySelector(".error-pw");
+		let emailError = document.querySelector(".error-email");
+		let addrError = document.querySelector(".error-addr");
+		
+		let form = document.querySelector("form");
+        
+		
+		title.onblur = function(){
+			
+			let titleValue = title.value;
+			
+	
+			let submitOk = true;
+			
+			titleError.innerText = "";
+
+			if(!titleValue.trim().length){ 
+				titleError.innerText = "필수항목입니다.";
+				submitOk = false;
+			}
+
+			return submitOk;
+		}
+        writer.onblur=function(){
+            let writerValue = writer.value;
+            writerError.innerText = "";
+
+            if(!writerValue.trim().length){
+				writerError.innerText = "필수 항목입니다.";
+				submitOk = false;
+			}
+            return submitOk;
+        }
+        pw.onblur=function(){
+            let pwValue = pw.value;
+            pwError.innerText = "";
+
+            if(!pwValue.trim().length){
+				pwError.innerText = "필수 항목입니다.";
+				submitOk = false;
+			}
+            return submitOk;
+        }
+        email.onblur=function(){
+            let emailValue = email.value;
+            emailError.innerText = "";
+
+            if(!emailValue.trim().length){
+				emailError.innerText = "필수 항목입니다.";
+				submitOk = false;
+			}
+            return submitOk;
+        }
+        email2.onblur=function(){
+            let email2Value = email2.value;
+            emailError.innerText = "";
+
+            if(!email2Value.trim().length){
+				emailError.innerText = "필수 항목입니다.";
+				submitOk = false;
+			}
+            return submitOk;
+        }
+        addr.onblur=function(){
+            let addrValue = addr.value;
+            addrError.innerText = "";
+
+            if(!addrValue.trim().length){
+				addrError.innerText = "필수 항목입니다.";
+				submitOk = false;
+			}
+            return submitOk;
+        }
+        writer.onclick=function(){
+            writer.innerText = "";
+            writerError.innerText = "영문자 대/소문자 특수문자, 숫자 포함 8 ~ 32자";
+            submitOk = false;
+        }
+	</script>
+</body>
+</html>
