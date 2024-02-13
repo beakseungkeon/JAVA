@@ -126,8 +126,28 @@ public class UniversityProgram implements Program {
 		switch(menu) {
 		case 1:insertScore();break;
 		case 2:updateScore();break;
+		case 3:deleteScore();break;
+		case 4:serchScore();break;
 		default:new InputMismatchException(); break;
 		}
+	}
+
+	private void serchScore() {
+		// TODO Auto-generated method stub
+		scanner.nextLine();
+		System.out.println("강의 이름:");
+		String name=scanner.nextLine();
+		um.serchScore(name);
+	}
+
+	private void deleteScore() {
+		// TODO Auto-generated method stub
+		scanner.nextLine();
+		System.out.println("강의 이름:");
+		String name=scanner.nextLine();
+		System.out.println("학번");
+		int stdNum=scanner.nextInt();
+		um.deleteScore(name,stdNum);
 	}
 
 	private void updateScore() {

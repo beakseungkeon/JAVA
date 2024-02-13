@@ -11,7 +11,7 @@ import lombok.Data;
 public class Lecture {
 	String name; // 강의이름
 	int code; // 강의코드
-	HashMap<Integer, String> score; // 학생학번 : 성적 맵
+	HashMap<Integer, Integer> score; // 학생학번 : 성적 맵
 	String professor; // 담당교수 이름
 	@Override
 	public boolean equals(Object obj) {

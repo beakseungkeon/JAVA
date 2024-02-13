@@ -281,5 +281,46 @@ public class UniversityManage {
 		lecture.get(index).score.remove(num); //입력받은 학번에 맞는 score 해쉬맵의 값을 지움
 		return true;
 	}
+	boolean insertScore(String name,int stdNum,int score) {
+		Lecture lectureName=new Lecture(name);
+		if(!lecture.contains(lectureName)) {
+			System.out.println("해당강의는 존재하지 않습니다.");
+			return false;
+		}
+		int index = lecture.indexOf(lectureName);
+		lecture.get(index).score.put(stdNum,score);
+		return true;
+		
+	}
+
+	boolean deleteScore(String name, int stdNum) {
+		// TODO Auto-generated method stub
+		Lecture lectureName=new Lecture(name);
+		if(!lecture.contains(lectureName)) {
+			System.out.println("해당강의는 존재하지 않습니다.");
+			return false;
+			
+		}
+		int index = lecture.indexOf(lectureName);
+		lecture.get(index).score.remove(stdNum);
+		return true;
+	}
+
+	boolean serchScore(String name) {
+		Lecture lectureName=new Lecture(name);
+		if(!lecture.contains(lectureName)) {
+			System.out.println("해당강의는 존재하지 않습니다.");
+			return false;
+			
+		}
+		int index = lecture.indexOf(lectureName);
+		lecture.get(index).score.forEach((key,value)->{
+			System.out.println(key+"+"+value);
+		});
+		
+		
+		return true;
+		
+	}
 	
 }
