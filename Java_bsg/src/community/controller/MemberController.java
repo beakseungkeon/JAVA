@@ -188,11 +188,23 @@ public class MemberController {
 		}
 	}
 	private void deletePost() {
-		
+		System.out.println("카테고리명:");
+		String ca_title=scan.next();
+		ArrayList<Category> list = memberService.getMemberListCa(ca_title);
+		if(list == null || list.size() == 0) {
+			System.out.println("존재하지 않는 카테고리입니다.");
+			return;
+		}
 		
 	}
 	private void updatePost() {
-		
+		System.out.println("카테고리명:");
+		String ca_title=scan.next();
+		ArrayList<Category> list = memberService.getMemberListCa(ca_title);
+		if(list == null || list.size() == 0) {
+			System.out.println("존재하지 않는 카테고리입니다.");
+			return;
+		}
 		
 	}
 	private void addPost() {
@@ -204,11 +216,11 @@ public class MemberController {
 			return;
 		}
 		
-		String title="공지";
+		String bo_title="공지";
 		System.out.println("내용 입력:");
 		String content=scan.next();
-		post post = new post(content,title,ca_title);
-		if(memberService.addTitleBo(title,ca_title)) {
+		post post = new post(content,bo_title);
+		if(memberService.addTitleBo(bo_title,ca_title,content)) {
 			System.out.println("게시판이 생성되었습니다.");
 		}
 		else System.out.println("생성 도중 오류가 발생했습니다.");
