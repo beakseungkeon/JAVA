@@ -7,7 +7,8 @@ import org.apache.ibatis.annotations.Param;
 
 import community.model.vo.Board;
 import community.model.vo.Category;
-import community.model.vo.MemberVO;
+import community.model.vo.Member;
+import community.model.vo.Post;
 
 public interface MemberDAO {
 
@@ -15,11 +16,11 @@ public interface MemberDAO {
 
 	
 
-	ArrayList<MemberVO> selectMemberList(String email);
+	ArrayList<Member> selectMemberList(String email);
 
-	boolean addMember(@Param("member")MemberVO member);
+	boolean addMember(@Param("member")Member member);
 
-	ArrayList<MemberVO> selectMemberListid(String id);
+	ArrayList<Member> selectMemberListid(String id);
 
 	boolean deleteUser(@Param("id")String id);
 
@@ -33,7 +34,22 @@ public interface MemberDAO {
 
 	boolean deleteBo(String title);
 
-	boolean addTitleBo(String title, String ca_title);
+
+
+	
+
+	boolean addTitleBo(@Param("member")Board board);
+
+	boolean addTitlePo(@Param("bo_title")String bo_title,  @Param("ca_title")String ca_title, @Param("post") Post post);
+
+	boolean deletePo(@Param("po_title")String po_title,@Param("bo_title") String bo_title,@Param("ca_title") String ca_title);
+
+	
+	boolean updatePo(@Param("bo_title") String bo_title,@Param("ca_title") String ca_title,@Param("post") Post post);
+
+	ArrayList<Post> selectMemberListPo(@Param("po_title")String po_title);
+
+	boolean deleteCo(@Param("po_title")String po_title,@Param("bo_title") String bo_title, @Param("ca_title")String ca_title, @Param("co_num")int co_num);
 
 	
 	

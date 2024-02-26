@@ -13,7 +13,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import community.dao.MemberDAO;
 import community.model.vo.Board;
 import community.model.vo.Category;
-import community.model.vo.MemberVO;
+import community.model.vo.Member;
+import community.model.vo.Post;
 
 public class MemberServiceImp implements MemberService {
 	private MemberDAO memberDao;
@@ -32,23 +33,23 @@ public class MemberServiceImp implements MemberService {
 		}
 	}
 	@Override
-	public boolean addMember(MemberVO member) {
+	public boolean addMember(Member member) {
 		if(member ==null 
-				|| member.getId()==null
-				|| member.getPw()==null
-				|| member.getEmail()==null
-				|| member.getNickname()==null) {
+				|| member.getMe_id()==null
+				|| member.getMe_pw()==null
+				|| member.getMe_email()==null
+				|| member.getMe_name()==null) {
 			return false;
 		}
 		return memberDao.addMember(member);
 	}
 	@Override
-	public ArrayList<MemberVO> getMemberList(String email) {
+	public ArrayList<Member> getMemberList(String email) {
 		
 		return memberDao.selectMemberList(email);
 	}
 	@Override
-	public ArrayList<MemberVO> getMemberListid(String id) {
+	public ArrayList<Member> getMemberListid(String id) {
 		// TODO Auto-generated method stub
 		return memberDao.selectMemberListid(id);
 	}
@@ -83,10 +84,38 @@ public class MemberServiceImp implements MemberService {
 		return memberDao.deleteBo(title);
 	}
 	@Override
-	public boolean addTitleBo(String title, String ca_title) {
+	public boolean addTitleBo(Board board) {
 		// TODO Auto-generated method stub
-		return memberDao.addTitleBo(title,ca_title);
+		return memberDao.addTitleBo(board);
 	}
+	@Override
+	public boolean addTitlePo(String bo_title, String ca_title, Post post) {
+		// TODO Auto-generated method stub
+		return memberDao.addTitlePo(bo_title,ca_title,post);
+	}
+	
+	@Override
+	public boolean deletePo(String po_title,String bo_title,String ca_title) {
+		// TODO Auto-generated method stub
+		return memberDao.deletePo(po_title,bo_title,ca_title);
+	}
+	@Override
+	public boolean updatePo( String bo_title, String ca_title, Post post) {
+		// TODO Auto-generated method stub
+		return memberDao.updatePo(bo_title,ca_title,post);
+	}
+	@Override
+	public ArrayList<Post> getMemberListPo(String po_title) {
+		// TODO Auto-generated method stub
+		return memberDao.selectMemberListPo(po_title);
+	}
+	@Override
+	public boolean deleteCo(String po_title, String bo_title, String ca_title, int co_num) {
+		// TODO Auto-generated method stub
+		return memberDao.deleteCo(po_title,bo_title,ca_title,co_num);
+	}
+	
+	
 	
 	
 	

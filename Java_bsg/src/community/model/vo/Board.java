@@ -1,16 +1,37 @@
 package community.model.vo;
 
+import java.util.Objects;
+
 import lombok.Data;
 
 @Data
 public class Board {
-	private String title;
-	private String ca_title;
-	public Board(String title) {
-		this.title=title;
+	private int bo_num;
+	private String bo_title;
+	private String bo_ca_title;
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Board other = (Board) obj;
+		return bo_num == other.bo_num;
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(bo_num);
+	}
+	public Board(int bo_num) {
+		super();
+		this.bo_num = bo_num;
 	}
 	public Board(String title, String ca_title) {
-		this.title=title;
-		this.ca_title=ca_title;
+		this.bo_title=title;
+		this.bo_ca_title=ca_title;
 	}
+	
 }

@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 import community.model.vo.Board;
 import community.model.vo.Category;
-import community.model.vo.MemberVO;
-import community.model.vo.post;
+import community.model.vo.Member;
+import community.model.vo.Post;
 import community.service.MemberService;
 import community.service.MemberServiceImp;
 
@@ -48,7 +48,7 @@ public class MemberController {
 		String nickname=scan.next();
 		System.out.println("이메일 :");
 		String email = scan.next();
-		MemberVO member = new MemberVO(id,pw,email,nickname);
+		Member member = new Member(id,pw,email,nickname);
 		if(memberService.addMember(member)) {
 			System.out.println("회원가입이 완료되었습니다.");
 		}
@@ -58,25 +58,25 @@ public class MemberController {
 		// TODO Auto-generated method stub
 		System.out.println("아이디를 입력하세요");
 		String id=scan.next();
-		ArrayList<MemberVO> list = memberService.getMemberListid(id);
+		ArrayList<Member> list = memberService.getMemberListid(id);
 		if(list.size() == 0) {
 			System.out.println("등록된 회원이 없습니다.");
 			return;
 		}
-		for(MemberVO tmp : list) {
-			System.out.println(tmp.getPw());
+		for(Member tmp : list) {
+			System.out.println(tmp.getMe_pw());
 		}
 	}
 	private void findId() {
 		System.out.println("이메일을 입력하세요");
 		String email=scan.next();
-		ArrayList<MemberVO> list = memberService.getMemberList(email);
+		ArrayList<Member> list = memberService.getMemberList(email);
 		if(list.size() == 0) {
 			System.out.println("등록된 회원이 없습니다.");
 			return;
 		}
-		for(MemberVO tmp : list) {
-			System.out.println(tmp.getId());
+		for(Member tmp : list) {
+			System.out.println(tmp.getMe_id());
 		}
 		
 			
@@ -105,7 +105,7 @@ public class MemberController {
 		}
 	}
 	
-	private void adminMenu() {
+	public void adminMenu() {
 		System.out.println("관리자 메뉴");
 		System.out.println("1.카테고리 관리");
 		System.out.println("2.게시판 관리");
@@ -143,11 +143,12 @@ public class MemberController {
 		}
 		
 	}
+	
 	private void userManagement() {
 		// TODO Auto-generated method stub
 		System.out.println("삭제할 사용자 아이디:");
 		String id=scan.next();
-		ArrayList<MemberVO> list = memberService.getMemberListid(id);
+		ArrayList<Member> list = memberService.getMemberListid(id);
 		if(list == null || list.size() == 0) {
 			System.out.println("존재하지 않는 아이디입니다.");
 			return;
@@ -159,8 +160,41 @@ public class MemberController {
 		}
 	}
 	private void commentManagement() {
-		System.out.println("");
+		System.out.println("카테고리명:");
+		String ca_title=scan.next();
+		ArrayList<Category> list = memberService.getMemberListCa(ca_title);
+		if(list == null || list.size() == 0) {
+			System.out.println("존재하지 않는 카테고리입니다.");
+			return;
+		}
+		System.out.println("게시판 제목:");
+		String bo_title=scan.next();
+		ArrayList<Board> bo_list = memberService.getMemberListBo(bo_title);
+		if(bo_list == null || bo_list.size() == 0) {
+			System.out.println("존재하지 않는 게시판입니다.");
+			return;
+		}
+		System.out.println("게시글 제목:");
+		String po_title=scan.next();
+		ArrayList<Post> po_list = memberService.getMemberListPo(po_title);
+		if(po_list == null || po_list.size() == 0) {
+			System.out.println("존재하지 않는 게시글입니다.");
+			return;
+		}
+		System.out.println("삭제할 댓글 번호");
+		int co_num=scan.nextInt();
+		
+		if(memberService.deleteCo(po_title,bo_title,ca_title,co_num)) {
+			System.out.println("내역을 삭제했습니다.");
+		}else {
+			System.out.println("내역을 삭제하지 못했습니다.");
+		}
+		
+		
+		
+		
 	}
+	
 	private void postMenu() {
 		// TODO Auto-generated method stub
 		System.out.println("1.공지사항 추가");
@@ -195,6 +229,14 @@ public class MemberController {
 			System.out.println("존재하지 않는 카테고리입니다.");
 			return;
 		}
+		System.out.println("삭제할 게시글명");
+		String bo_title="공지";
+		String po_title=scan.next();
+		if(memberService.deletePo(po_title,bo_title,ca_title)) {
+			System.out.println("내역을 삭제했습니다.");
+		}else {
+			System.out.println("내역을 삭제하지 못했습니다.");
+		}
 		
 	}
 	private void updatePost() {
@@ -205,6 +247,18 @@ public class MemberController {
 			System.out.println("존재하지 않는 카테고리입니다.");
 			return;
 		}
+		String bo_title="공지";
+		System.out.println("삭제할 게시글명");
+		String po_title=scan.next();
+		System.out.println("수정할 내용:");
+		String po_content=scan.next();
+		Post post = new Post(po_content,po_title);
+		if(memberService.updatePo(bo_title,ca_title,post)) {
+			System.out.println("내역을 수정했습니다.");
+		}else {
+			System.out.println("내역을 수정하지 못했습니다");
+		}
+		
 		
 	}
 	private void addPost() {
@@ -217,10 +271,12 @@ public class MemberController {
 		}
 		
 		String bo_title="공지";
+		System.out.println("제목 입력");
+		String po_title=scan.next();
 		System.out.println("내용 입력:");
-		String content=scan.next();
-		post post = new post(content,bo_title);
-		if(memberService.addTitleBo(bo_title,ca_title,content)) {
+		String po_content=scan.next();
+		Post post = new Post(po_content,po_title);
+		if(memberService.addTitlePo(bo_title,ca_title,post)) {
 			System.out.println("게시판이 생성되었습니다.");
 		}
 		else System.out.println("생성 도중 오류가 발생했습니다.");
@@ -228,15 +284,18 @@ public class MemberController {
 		
 	}
 	private void boardMenu() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method 
+		
 		System.out.println("1.게시판 추가");
 		System.out.println("3.게시판 삭제");
 		int menu=scan.nextInt();
 		BoardManagement(menu);
+	
 	}
 	private void BoardManagement(int menu) {
 		// TODO Auto-generated method stub
 		switch(menu) {
+		
 		case 1:
 			addBoard();
 			break;
@@ -244,6 +303,7 @@ public class MemberController {
 		case 2:
 			deleteBoard();
 			break;
+		
 		default:
 			System.out.println("잘못된 메뉴 선택입니다.");
 			break;
@@ -270,15 +330,19 @@ public class MemberController {
 		System.out.println("카테고리명:");
 		String ca_title=scan.next();
 		ArrayList<Category> list = memberService.getMemberListCa(ca_title);
+		
 		if(list == null || list.size() == 0) {
 			System.out.println("존재하지 않는 카테고리입니다.");
 			return;
 		}
+		
 		System.out.println("추가할 게시판명:");
 		String title=scan.next();
 		Board board = new Board(title,ca_title);
-		if(memberService.addTitleBo(title,ca_title)) {
+		
+		if(memberService.addTitleBo(board)) {
 			System.out.println("게시판이 생성되었습니다.");
+			
 		}
 		else System.out.println("생성 도중 오류가 발생했습니다.");
 	
@@ -286,6 +350,7 @@ public class MemberController {
 		
 	}
 	private void categoryMenu() {
+		
 		System.out.println("1.카테고리 추가");
 		System.out.println("2.카테고리 삭제");
 		System.out.println("메뉴 선택:");
@@ -302,6 +367,7 @@ public class MemberController {
 		case 2:
 			deleteCategory();
 			break;
+			
 		default:
 			System.out.println("잘못된 메뉴 선택입니다.");
 			break;

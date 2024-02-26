@@ -1,4 +1,6 @@
-
+drop database if exists `team3`;
+create database if not exists`team3`;
+use `team3`;
 DROP TABLE IF EXISTS `member`;
 
 CREATE TABLE `member` (
