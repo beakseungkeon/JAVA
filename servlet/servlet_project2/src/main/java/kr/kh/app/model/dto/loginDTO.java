@@ -1,16 +1,13 @@
 package kr.kh.app.model.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class loginDTO {
 	private String id;
 	private String pw;
-	public loginDTO(String id, String pw) {
-		this.id=id;
-		this.pw=pw;
-		
-	}
 }

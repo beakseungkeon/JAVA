@@ -22,11 +22,8 @@
 			<label for="pw" class="form-label">비번</label>
 			<input type="password" class="form-control" id="pw" placeholder="비번" name="pw">
 		</div>
-		
-		
-		<button type="submit" class="btn btn-outline-success col-12">로그인</button>
+		<button class="btn btn-outline-danger">로그인</button>
 	</form>
 </div>
-
 </body>
 </html>

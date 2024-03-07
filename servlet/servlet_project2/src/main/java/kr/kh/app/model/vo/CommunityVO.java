@@ -8,5 +8,4 @@ import lombok.NoArgsConstructor;
 public class CommunityVO {
 	private int co_num;
 	private String co_name;
-	
 }

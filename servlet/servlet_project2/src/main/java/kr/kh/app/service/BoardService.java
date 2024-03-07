@@ -4,11 +4,20 @@ import java.util.ArrayList;
 
 import kr.kh.app.model.vo.BoardVO;
 import kr.kh.app.model.vo.CommunityVO;
+import kr.kh.app.pagination.Criteria;
 
 public interface BoardService {
 
-	ArrayList<BoardVO> getBoardList();
-	ArrayList<CommunityVO> getCommunityList();
+	ArrayList<BoardVO> getBoardList(Criteria cri);
+
 	boolean insertBoard(BoardVO board);
-	boolean checkString(String str);
+
+	ArrayList<CommunityVO> getCommunityList();
+
+	int getTotalCount(Criteria cri);
+
+	boolean upDateView(int num);
+
+	BoardVO getBoardList(int num);
+
 }

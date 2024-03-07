@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,17 +9,16 @@
 </head>
 <body>
 	<script type="text/javascript">
-		let msg='${msg}';
-		if(msg !='');{
+		let msg = '${msg}';//서버에서 보낸 msg값을 변수에 저장
+		if(msg != ''){
 			alert(msg);
 		}
-		let redirectURL='${url}';
-		if(redirectURL !=''){
-			location.href='<c:url value="/${url}"/>'
+		let redirectURL = '${url}';//서버에서 보낸 url을 변수에 저장
+		if(redirectURL != ''){
+			location.href = '<c:url value="/${url}"/>';
 		}else{
-			location.href='<c:url value="/"/>'
+			location.href = '<c:url value="/"/>';
 		}
 	</script>
-
 </body>
 </html>
