@@ -16,7 +16,7 @@ import kr.kh.app.service.BoardService;
 import kr.kh.app.service.BoardServiceImp;
 
 @WebServlet("/board/list")
-public class boardListServlet extends HttpServlet {
+public class BoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private BoardService boardService = new BoardServiceImp();
     

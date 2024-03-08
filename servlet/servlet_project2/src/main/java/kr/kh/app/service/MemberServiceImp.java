@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import kr.kh.app.dao.MemberDAO;
-import kr.kh.app.model.dto.loginDTO;
+import kr.kh.app.model.dto.LoginDTO;
 import kr.kh.app.model.vo.MemberVO;
 
 public class MemberServiceImp implements MemberService {
@@ -53,7 +53,7 @@ public class MemberServiceImp implements MemberService {
 		}
 	}
 	@Override
-	public MemberVO getMember(loginDTO loginDto) {
+	public MemberVO getMember(LoginDTO loginDto) {
 		if(loginDto == null) {
 			return null;
 		}
@@ -71,5 +71,10 @@ public class MemberServiceImp implements MemberService {
 			return user;
 		}
 		return null;
+	}
+	@Override
+	public String checkId(String id) {
+		MemberVO member = memberDao.selectMember(id);
+		return member == null ? "1" : "";
 	}
 }

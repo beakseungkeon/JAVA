@@ -13,21 +13,24 @@ import javax.servlet.http.HttpServletRequest;
 
 import kr.kh.app.model.vo.MemberVO;
 
-@WebFilter({"/comment/insert","/board/insert","/board/update","/board/delete",
-	"/recommend","/comment/update","/comment/delete"})
+//로그인한 회원만 접근할 수 있는 URL에서 동작하는 필터
+@WebFilter({"/board/insert","/board/update","/board/delete"})
 public class MemberFilter extends HttpFilter implements Filter {
-
-	private static final long serialVersionUID = 1L;
+       
+	private static final long serialVersionUID = -5262224032098686359L;
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest httpServletRequest = (HttpServletRequest)request;
-		MemberVO user = (MemberVO)httpServletRequest.getSession().getAttribute("user");
+		//회원 정보를 가져옴
+		MemberVO user = 
+			(MemberVO)((HttpServletRequest)request).getSession().getAttribute("user");
+		//회원 정보가 없으면 로그인이 필요한 서비스입니다라고 알림 후 로그인페이지로 이동
 		if(user == null) {
-			request.setAttribute("msg", "로그인이 필요한 서비스입니다.");
+			request.setAttribute("msg", "로그인이 필요한 서비스입니다");
 			request.setAttribute("url", "login");
-			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(httpServletRequest, response);
+			request.getRequestDispatcher("/WEB-INF/views/message.jsp").forward(request, response);
 			return;
 		}
+		//있으면 하려던 작업을 수행
 		chain.doFilter(request, response);
 	}
 }

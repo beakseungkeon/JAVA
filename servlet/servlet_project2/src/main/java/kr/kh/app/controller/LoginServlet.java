@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.kh.app.model.dto.loginDTO;
+import kr.kh.app.model.dto.LoginDTO;
 import kr.kh.app.model.vo.MemberVO;
 import kr.kh.app.service.MemberService;
 import kr.kh.app.service.MemberServiceImp;
@@ -29,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 		String pw = request.getParameter("pw");
 		
 		//아이디와 비번을 이용하여 LoginDTO 객체를 생성
-		loginDTO loginDto = new loginDTO(id, pw);
+		LoginDTO loginDto = new LoginDTO(id, pw);
 		
 		//LoginDTO 객체를 이용해서 memeberService에게 MemberVO 객체를 달라고 요청.
 		MemberVO user = memberService.getMember(loginDto);

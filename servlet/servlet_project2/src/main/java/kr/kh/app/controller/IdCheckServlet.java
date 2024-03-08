@@ -12,18 +12,17 @@ import kr.kh.app.service.MemberServiceImp;
 
 @WebServlet("/id/check")
 public class IdCheckServlet extends HttpServlet {
-
+	
 	private static final long serialVersionUID = 1L;
     
 	private MemberService memberService = new MemberServiceImp();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//아이디를 가져옴
+		//아이디 가져옴
 		String id = request.getParameter("id");
-		//아이디와 일치하는 회원 정보 있는지 요청
-		boolean res = memberService.checkId(id);
-		//결과를 화면에 전송
-		response.getWriter().write(""+res);
+		//아이디 사용 가능한지 확인 요청
+		String res = memberService.checkId(id);
+		//가능 여부에 따른 결과를 화면에 전송
+		response.getWriter().write(res);
 	}
-
 }

@@ -11,6 +11,4 @@ public interface MemberService {
 
 	boolean checkId(String id);
 
-	
-
 }
